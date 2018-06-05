@@ -1,0 +1,97 @@
+spring:  
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.100.2.165:3306/crm-basic?useUnicode\=true&characterEncoding\=utf-8
+    username: root
+    password: deloitte2018
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        globally_quoted_identifiers: true
+    hibernate:
+      ddl-auto: update
+      format_sql : true 
+  redis:
+      host: 192.168.174.128
+      port: 6379    
+  rabbitmq:
+    host: 192.168.174.128
+    port: 5673
+    username: guest
+    password: guest 
+    timeout: 300 
+    publisher-confirms: true
+    virtual-host: /
+#  rabbitmq:
+#    host: 192.168.174.128
+#    port: 5673
+#    username: guest
+#    password: guest 
+#    timeout: 300 
+#    publisher-confirms: true
+#    virtual-host: /
+    queues: 
+       value: [ { name : q1 , durable: true , exclusive: true , autoDelete: true } , 
+              { name : q2 , durable: true , exclusive: true , autoDelete: true } , 
+              { name : q3 , durable: true , exclusive: true , autoDelete: true } ]
+              
+    exchanges:
+       value: [ { name : e1 , type: topic , durable: true ,  autoDelete: true } , 
+              { name : e2 , type: direct , durable: true ,  autoDelete: true } , 
+              { name : e3 , type: fanout , durable: true ,  autoDelete: true } ,
+              { name : e4 , type: fanout , durable: true ,  autoDelete: true } ]
+    bindings:
+       value: [ { e1 : q1 } , { e2 : q2} , { e3 : q1&q2&q3 }  ]    
+---
+spring:    
+  cloud: 
+     bus: 
+       trace: 
+         enabled: true
+             
+
+---
+spring:
+  storeType:
+    file:
+      maxSize: 10737418240
+      fileMaxSize: 5242880
+      sizeThreshold: 4096
+      repository: C:\\dml\\uploadFileTemp\\
+      headerEncoding: utf-8 
+---
+spring:
+  http: 
+    multipart:
+      maxFileSize: 100Mb
+      maxRequestSize: 100Mb     
+      
+      
+---
+security:
+  # Disable Spring Boot basic authentication
+  basic:
+    enabled: false
+  session:
+     expireTime: 1800000
+#---
+#drc:
+#  esb:
+#    username: esbname
+#    password: esbpassword
+#    cicUrl: http//10.10.10.10/esb/cic/xxxsdad
+#    dmsUrl: http//10.10.10.10/esb/dms/xxxsdad
+#  iov:
+#    token: xdasdad
+#    url: http//10.10.10.10/iov/dsdsadsa
+#  fotileFamily:
+#    token: dasdada
+#    url: http//xdadsada/iov/dsdsadsa
+
+---
+spring:
+  session:
+    store-type: redis          

@@ -1,0 +1,98 @@
+spring:
+  aop:
+    proxy-target-class: true
+
+eureka:
+  instance:
+    statusPageUrlPath: ${management.contextPath}/info
+    healthCheckUrlPath: ${management.contextPath}/health
+
+#配置中心
+  client:
+    serviceUrl:
+      healthcheck:
+         enabled: true
+    registryFetchIntervalSeconds: 10
+
+
+
+---
+hystrix:
+  threadpool:
+    default:
+      coreSize: 10000
+
+---
+#超时配置
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 10000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 0
+  OkToRetryOnAllOperations: false
+
+
+---
+server:
+  session:
+    timeout: -1
+---
+spring:
+  http:
+    multipart:
+      maxFileSize: 100Mb
+      maxRequestSize: 100Mb
+
+---
+security:
+  # Disable Spring Boot basic authentication
+  basic:
+    enabled: false
+  session:
+    expireTime: 1800000
+  ignored:
+     - /pushfotileEjiaApplication/page
+
+spring:
+  session:
+    store-type: redis
+
+---
+drc:
+  esb:
+    username: test02
+    password: password1
+    cicStateUrl: http://tesb.fotile.com.cn/WP_fotile_FSOA/APP_CRM_SERVICES/Proxy_Services/TA_CIC/CRM_SYC_1043_SendCueStateInfo_PS
+    cicMemberUrl: http://tesb.fotile.com.cn/WP_fotile_FSOA/APP_CRM_SERVICES/Proxy_Services/TA_VIP/CRM_SYC_1044_VIPPointsTransactionInfo_PS
+    dmsUrl: http://tesb.fotile.com.cn/WP_fotile_FSOA/APP_CRM_SERVICES/Proxy_Services/TA_DMS/CRM_SYC_1052_SendOvercomingCustomerInfo_PS
+    oaSentToDoTaskUrl: http://tesb.fotile.com.cn/WP_fotile_FSOA/APP_DOC_SERVICES/Proxy_Services/TA_OA/DOC_SYC_1019_SendTodo_PS
+    oaSentDoneTaskUrl: http://tesb.fotile.com.cn/WP_fotile_FSOA/APP_DOC_SERVICES/Proxy_Services/TA_OA/DOC_SYC_1021_SendNotifyTodo_PS
+  iov:
+    token: 3df409cfe04c9e1f7d7b912c91ff0bcd
+    urlLocus: http://saas.ifotile.com.cn/pages/nosecurity/business/device_history_track.jsp
+    urlPlace: http://saas.ifotile.com.cn/pages/nosecurity/business/device_real_time.jsp
+    urlOperationData: http://tesb.fotile.com.cn/WP_fotile_FSOA/APP_CRM_SERVICES/Proxy_Services/TA_VNP/CRM_SYC_1054_SendOperationalAnalysisData_PS
+  fotileFamily:
+    secretKey: fonton-almight@lx100$#365#$
+    iv: 20171201
+    encoding: utf-8
+    ActivityInvitationUrl: http://bfda-app.ifotile.com.cn/almightyAppManagement/A1_BFDA_CRM_FTEAPP_001.action
+    ActivityATAQUrl: http://bfda-app.ifotile.com.cn/almightyAppManagement/A1_BFDA_CRM_FTEAPP_002.action
+  sms:
+    sendUrl: http://sdk.entinfo.cn:8061/webservice.asmx
+    sn: SDK-WKS-010-00589
+    pwd: 1f31d-3^ba-

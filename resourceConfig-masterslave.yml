@@ -1,0 +1,158 @@
+sharding:
+  jdbc:
+    datasource:
+      names: ds_master_0,ds_master_1,ds_master_0_slave_0,ds_master_0_slave_1,ds_master_1_slave_0
+      ds_master_0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com:mysql:jdbc:Driver
+        jdbcUrl: jdbc:mysql://192.168.174.128:3307/ds?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8
+        username: root
+        password: root
+        maximum-pool-size: 100
+        max-idle: 10
+        max-wait: 10000
+        min-idle: 5
+        initial-size: 5
+        validation-query: SELECT 1
+        test-on-borrow: false
+        test-while-idle: true
+        time-between-eviction-runs-millis: 18800
+      ds_master_0_slave_0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com:mysql:jdbc:Driver
+        jdbcUrl: jdbc:mysql://192.168.174.128:3308/ds?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8
+        username: root
+        password: root  
+        maximum-pool-size: 100
+        max-idle: 10
+        max-wait: 10000
+        min-idle: 5
+        initial-size: 5
+        validation-query: SELECT 1
+        test-on-borrow: false
+        test-while-idle: true
+        time-between-eviction-runs-millis: 18800
+      ds_master_0_slave_1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com:mysql:jdbc:Driver
+        jdbcUrl: jdbc:mysql://192.168.174.128:3311/ds?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8
+        username: root
+        password: root  
+        maximum-pool-size: 100
+        max-idle: 10
+        max-wait: 10000
+        min-idle: 5
+        initial-size: 5
+        validation-query: SELECT 1
+        test-on-borrow: false
+        test-while-idle: true
+        time-between-eviction-runs-millis: 18800                  
+      ds_master_1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com:mysql:jdbc:Driver
+        jdbcUrl: jdbc:mysql://192.168.174.128:3309/ds_1?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8
+        username: root
+        password: root
+        maximum-pool-size: 100
+        max-idle: 10
+        max-wait: 10000
+        min-idle: 5
+        initial-size: 5
+        validation-query: SELECT 1
+        test-on-borrow: false
+        test-while-idle: true
+        time-between-eviction-runs-millis: 18800        
+      ds_master_1_slave_0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com:mysql:jdbc:Driver
+        jdbcUrl: jdbc:mysql://192.168.174.128:3310/ds_1?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8
+        username: root
+        password: root
+        maximum-pool-size: 100
+        max-idle: 10
+        max-wait: 10000
+        min-idle: 5
+        initial-size: 5
+        validation-query: SELECT 1
+        test-on-borrow: false
+        test-while-idle: true
+        time-between-eviction-runs-millis: 18800     
+#---
+#sharding:
+#  jdbc:
+#    config:
+#      masterslave:
+#        name: ds_ms
+#        load-balance-algorithm-type: round_robin
+#        master-data-source-name: ds_master_0
+#        slave-data-source-names: ds_master_0_slave_0,ds_master_0_slave_1,ds_master_1_slave_0
+
+
+#sharding:
+#  jdbc:
+#    config:
+#      sharding:
+#        tables:
+#          t_order:
+#            actual-data-nodes: ds_${0::1}:t_order_${0::1}
+#            table-strategy:
+#              inline:
+#                sharding-column: order_id
+#                algorithm-expression: t_order_${order_id % 2}
+#            key-generator-column-name: order_id
+#          t_order_item: 
+#            actual-data-nodes: ds_${0::1}:t_order_item_${0::1}
+#            table-strategy:
+#              inline:
+#                sharding-column: order_id
+#                algorithm-expression: t_order_item_${order_id % 2}
+#            key-generator-column-name: order_item_id
+#          master-slave-rules: 
+#            ds_0:
+#              master-data-source-name: ds_master_0
+#              slave-data-source-names: ds_master_0_slave_0
+#            ds_1:
+#              master-data-source-name: ds_master_1
+#              slave-data-source-names: ds_master_1_slave_0
+#sharding:
+#  jdbc:
+#    config:
+#      masterslave:
+#        name: ds_ms
+#        master-data-source-name: ds_master_0
+#        slave-data-source-names: ds_master_0_slave_0
+    
+---
+sharding:
+  jdbc:
+    config:
+      sharding:
+#        defaultDataSourceName: ds_0
+        default-database-strategy:
+          inline:
+            sharding-column: sys_id
+            algorithm-expression: ds_${sys_id % 2}
+        tables:
+          t_basic_login_history_log:
+            actual-data-nodes: ds_${0..1}.t_basic_login_history_log
+#            table-strategy:
+#              inline:
+#                sharding-column: sys_id
+#                algorithm-expression: ds_${sys_id % 2}.t_basic_login_history_log
+            key-generator-column-name: sys_id                                
+
+---
+
+sharding:
+  jdbc:
+    config:
+      sharding:
+        master-slave-rules:
+          ds_0:
+            master-data-source-name: ds_master_0
+            slave-data-source-names: ds_master_0_slave_0, ds_master_0_slave_1
+            loadBalanceAlgorithmType: RANDOM
+          ds_1:
+            master-data-source-name: ds_master_1
+            slave-data-source-names: ds_master_1_slave_0 
+            loadBalanceAlgorithmType: RANDOM  
