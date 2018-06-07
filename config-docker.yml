@@ -48,9 +48,21 @@ spring:
     port: ${COMMON_RABBITMQ_PORT}
     username: ${COMMON_RABBITMQ_USER}
     password: ${COMMON_RABBITMQ_PASSWORD}
+    timeout: 300 
     publisher-confirms: true
-    virtual-host: /   
-    
+    virtual-host: /
+    queues: 
+       value: [ { name : q1 , durable: true , exclusive: true , autoDelete: true } , 
+              { name : q2 , durable: true , exclusive: true , autoDelete: true } , 
+              { name : q3 , durable: true , exclusive: true , autoDelete: true } ]
+              
+    exchanges:
+       value: [ { name : e1 , type: topic , durable: true ,  autoDelete: true } , 
+              { name : e2 , type: direct , durable: true ,  autoDelete: true } , 
+              { name : e3 , type: fanout , durable: true ,  autoDelete: true } ,
+              { name : e4 , type: fanout , durable: true ,  autoDelete: true } ]
+    bindings:
+       value: [ { e1 : q1 } , { e2 : q2} , { e3 : q1&q2&q3 }  ]    
     
 ---
 # 文件服务器
