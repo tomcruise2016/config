@@ -35,7 +35,12 @@ spring:
       host: ${COMMON_REDIS_HOST}
       port: ${COMMON_REDIS_PORT}
       password: ${COMMON_REDIS_PASSWORD}   
-           
+
+---
+spring:
+  redisson:
+      address: ${COMMON_REDISSION_ADDRESS}
+      password: ${COMMON_REDISSION_PASSWORD}      
 ---
 spring:
   rabbitmq:
