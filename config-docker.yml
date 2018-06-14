@@ -51,6 +51,7 @@ spring:
     timeout: 300 
     publisher-confirms: true
     virtual-host: /
+    extends: false
     queues: 
        value: [ { name : q1 , durable: true , exclusive: true , autoDelete: true } , 
               { name : q2 , durable: true , exclusive: true , autoDelete: true } , 
