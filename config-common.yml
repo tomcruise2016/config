@@ -76,28 +76,3 @@ spring:
     bus: 
       trace: 
         enabled: true    
----
-drc:
-  esb:
-    username: test02
-    password: password1
-    cicStateUrl: http://tesb.fotile.com.cn/WP_fotile_FSOA/APP_CRM_SERVICES/Proxy_Services/TA_CIC/CRM_SYC_1043_SendCueStateInfo_PS
-    cicMemberUrl: http://tesb.fotile.com.cn/WP_fotile_FSOA/APP_CRM_SERVICES/Proxy_Services/TA_VIP/CRM_SYC_1044_VIPPointsTransactionInfo_PS
-    dmsUrl: http://tesb.fotile.com.cn/WP_fotile_FSOA/APP_CRM_SERVICES/Proxy_Services/TA_DMS/CRM_SYC_1052_SendOvercomingCustomerInfo_PS
-    oaSentToDoTaskUrl: http://tesb.fotile.com.cn/WP_fotile_FSOA/APP_DOC_SERVICES/Proxy_Services/TA_OA/DOC_SYC_1019_SendTodo_PS
-    oaSentDoneTaskUrl: http://tesb.fotile.com.cn/WP_fotile_FSOA/APP_DOC_SERVICES/Proxy_Services/TA_OA/DOC_SYC_1021_SendNotifyTodo_PS
-  iov:
-    token: 3df409cfe04c9e1f7d7b912c91ff0bcd
-    urlLocus: http://saas.ifotile.com.cn/pages/nosecurity/business/device_history_track.jsp
-    urlPlace: http://saas.ifotile.com.cn/pages/nosecurity/business/device_real_time.jsp
-    urlOperationData: http://tesb.fotile.com.cn/WP_fotile_FSOA/APP_CRM_SERVICES/Proxy_Services/TA_VNP/CRM_SYC_1054_SendOperationalAnalysisData_PS
-  fotileFamily:
-    secretKey: fonton-almight@lx100$#365#$
-    iv: 20171201
-    encoding: utf-8
-    ActivityInvitationUrl: http://bfda-app.ifotile.com.cn/almightyAppManagement/A1_BFDA_CRM_FTEAPP_001.action
-    ActivityATAQUrl: http://bfda-app.ifotile.com.cn/almightyAppManagement/A1_BFDA_CRM_FTEAPP_002.action
-  sms:
-    sendUrl: http://sdk.entinfo.cn:8061/webservice.asmx
-    sn: SDK-WKS-010-00589
-    pwd: 1f31d-3^ba-
