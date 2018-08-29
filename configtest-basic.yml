@@ -31,12 +31,12 @@ spring:
       
 ---
 spring:      
-  ZK:
+   zk : 
     address: 192.168.174.128:2181,192.168.174.128:2182,192.168.174.128:2183
     timeOut: 5000
     sessionOut: 5000
     namespace:  dislock
-    barrierlockPath: /lock3    
+    barrierlockPath: /lock3   
 
 ---
 feign:
