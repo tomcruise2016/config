@@ -34,3 +34,10 @@ spring:
     sessionOut: 5000
     namespace:  dislock
     barrierlockPath: /lock3    
+
+
+feign:
+  hystrix:
+    enabled: true
+  s1: basicService
+      
