@@ -28,7 +28,12 @@ spring:
     hibernate:
       ddl-auto: update
       format_sql : true
-      
+  redis:
+      host: 192.168.174.128
+      port: 6379
+  redisson:
+      address: redis://192.168.174.128:6379
+      password:      
 ---
 spring:      
    zk : 
