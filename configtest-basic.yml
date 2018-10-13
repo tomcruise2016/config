@@ -28,16 +28,15 @@ spring:
     hibernate:
       ddl-auto: update
       format_sql : true
-  redis:
-      host: 192.168.174.128
-      port: 6379
-      password:
-      database: 8
-      pool:
-        max-active: 8
-        min-idle: 1
-        max-idle: 1
-        max-wait: -1      
+      
+  jedis :  
+    pool :  
+      host : 127.0.0.1  
+      port : 6379  
+      config :  
+        maxTotal: 100  
+        maxIdle: 10  
+        maxWaitMillis : 100000
      
 ---
 spring:      
