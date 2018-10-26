@@ -29,15 +29,17 @@ spring:
       ddl-auto: update
       format_sql : true
       
-  jedis :  
-    pool :  
-      host : 192.168.174.128  
-      port : 6379  
-      config :  
-        maxTotal: 100  
-        maxIdle: 10  
-        maxWaitMillis : 100000
-     
+#  jedis :  
+#    pool :  
+#      host : 192.168.174.128  
+#      port : 6379  
+#      config :  
+#        maxTotal: 100  
+#        maxIdle: 10  
+#        maxWaitMillis : 100000
+  redis:
+      host: 192.168.174.128
+      port: 6379     
 ---
 spring:      
    zk : 
