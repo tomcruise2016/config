@@ -38,8 +38,11 @@ spring:
 #        maxIdle: 10  
 #        maxWaitMillis : 100000
   redis:
+      database: 0
       host: 192.168.174.128
-      port: 6379     
+      port: 6379 
+      password: 
+      timeout: 2000
 ---
 spring:      
    zk : 
