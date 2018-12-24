@@ -104,22 +104,6 @@ spring:
 
 ---
 
-drc:
-  esb:
-    username: esbname
-    password: esbpassword
-    cicUrl: http//10.10.10.10/esb/cic/xxxsdad
-    dmsUrl: http//10.10.10.10/esb/dms/xxxsdad
-  iov:
-    token: 9f6be93ecd8565b125cb5a242cf7fefd
-    urlLocus: http://saas.ifotile.com.cn/pages/nosecurity/business/device_history_track.jsp
-    urlPlace: http://saas.ifotile.com.cn/pages/nosecurity/business/device_real_time.jsp
-    urlOperationData: http://saas.ifotile.com.cn/pages/nosecurity
-  fotileFamily:
-    secretKey: fonton-almight@lx100$#365#$
-    iv: 20171201
-    encoding: utf-8
-    ActivityInvitationUrl: http://10.100.2.91:8015/almightyAppManagement/A1_BFDA_CRM_FTEAPP_001.action
-    ActivityATAQUrl: http://10.100.2.91:8015/almightyAppManagement/A1_BFDA_CRM_FTEAPP_002.action
+
 
                 

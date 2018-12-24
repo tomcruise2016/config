@@ -10,7 +10,7 @@ spring:
       ddl-auto: update
     show-sql: true   
   redis:
-    host: 10.100.2.160
+    host: 192.168.174.128
     port: 6379
     password: 123456  
 
